@@ -1,14 +1,16 @@
 import React from 'react';
 import { Check } from 'lucide-react';
+import { useQuizProgress } from '../../contexts/QuizProgressContext';
 
-const QuizProgressBar = ({ currentStep, completedTasks }) => {
+const QuizProgressBar = () => {
+  const { currentStep, completedTasks } = useQuizProgress();
   const steps = [
     { number: 1, title: 'Take Scent Quiz' },
     { number: 2, title: 'Build Your Set' },
     { number: 3, title: 'Complete Payment' }
   ];
 
-  const tasksPerStep = 7;
+  const tasksPerStep = 7; // Step 1 has 7 questions
   const taskCompletionPercentage = (completedTasks / tasksPerStep) * 100;
 
   return (
