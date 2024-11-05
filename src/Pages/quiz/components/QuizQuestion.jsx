@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import lgoai from "../../utils/ai.png";
 import human from "../../utils/man.png";
-import { useQuizProgress } from '../../contexts/QuizProgressContext';
+import { useQuizProgress } from "@/contexts/QuizProgressContext";
 
 const QuizQuestion = () => {
   const { completeTask } = useQuizProgress(); // Import completeTask from context
