@@ -3,20 +3,24 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import lgoai from "../../utils/ai.png";
 import human from "../../utils/man.png";
+import { useQuizProgress } from '../../contexts/QuizProgressContext';
 
 const QuizQuestion = () => {
+  const { completeTask } = useQuizProgress(); // Import completeTask from context
   const [birthDate, setBirthDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
 
   const handleDateChange = (date) => {
     setBirthDate(date);
     setShowCalendar(false);
+    completeTask(); // Call completeTask each time a question is answered
   };
 
   const handleContinue = () => {
     if (birthDate) {
       console.log('Selected date:', birthDate.toDateString());
-      // Add your logic here to proceed to the next step
+      // Add logic to proceed to the next question or display next question
+      completeTask(); // Mark the task as completed when clicking continue
     } else {
       alert('Please select a date before continuing.');
     }
@@ -83,7 +87,7 @@ const QuizQuestion = () => {
           <span className="mr-2">⌨️</span>
           <span>Or Press Enter</span>
         </div>
-        <button className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors" onClick={handleContinue}>
+        <button className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors" onClick={handleContinue} onKeyPress={handleKeyPress}>
           Continue
         </button>
       </div>
